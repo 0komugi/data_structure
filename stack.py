@@ -31,10 +31,11 @@ class Stack:
         if self.stack:
             return self.stack[-1]
 
+
 if __name__ == '__main__':
     stack1 = Stack()
 
     for i in range(10):
         stack1.push(i)
 
-    print(stack1.pop(),stack1.peek(),stack1.is_empty(),stack1.size())
+    print(stack1.pop(), stack1.peek(), stack1.is_empty(), stack1.size())
