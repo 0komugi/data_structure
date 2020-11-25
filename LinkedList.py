@@ -29,8 +29,8 @@ class LinkedList:
     # 指定位置插入结点
     def insert(self, new_data, position):
         new_node = Node(new_data)
-        if self.length() <= position < 0:
-            print('超出链表长度！')
+        if position >= self.length() or position < 0:
+            raise IndexError('超出链表长度！')
         elif position == 0:
             print('不能在头结点处插入新结点！')
         else:
@@ -40,7 +40,7 @@ class LinkedList:
     # 删除指定位置结点
     def remove(self, position):
         if position >= self.length() or position < 0:
-            print('超出链表长度！')
+            raise IndexError('超出链表长度！')
         elif position == 0:
             print('不能删除头结点！')
         else:
@@ -49,8 +49,7 @@ class LinkedList:
 
     # 返回包括头结点在内的链表长度
     def length(self):
-        t = self.head
-        n = 1
+        t, n = self.head, 1
         while t.next:
             t = t.next
             n += 1
@@ -59,13 +58,14 @@ class LinkedList:
 
     # 获取某个位置的结点
     def get_node(self, position: int):
-        if self.length() <= position < 0:
-            print('超出链表长度！')
-        t = self.head
-        for i in range(position):
-            t = t.next
+        if position >= self.length() or position < 0:
+            raise IndexError('超出链表长度！')
+        else:
+            t = self.head
+            for i in range(position):
+                t = t.next
 
-        return t
+            return t
 
 
 if __name__ == '__main__':
@@ -77,3 +77,5 @@ if __name__ == '__main__':
     print(link1.get_node(link1.length()-1).data, link1.length())
     link1.remove(link1.length()-1)
     print(link1.get_node(link1.length()-1).data, link1.length())
+    # print(link1.get_node(link1.length()).data)
+    # print(link1.get_node(-1).data)
