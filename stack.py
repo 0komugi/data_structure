@@ -14,7 +14,7 @@ Class Stack(object):
     # 出栈
     def pop(self):
         if self.stack:
-            return self.stack。pop()
+            return self.stack.pop()
         else:
             raise IndexError("这是一个空栈！")
     
