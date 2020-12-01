@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Node:
     def __init__(self, data=None):
         self.data = data
@@ -47,8 +50,8 @@ class LinkedList:
             pre, t = self.get_node(position - 1), self.get_node(position)
             pre.next, t.next = t.next, None
 
-    # 返回包括头结点在内的链表长度
     def length(self):
+        # 返回包括头结点在内的链表长度
         t, n = self.head, 1
         while t.next:
             t = t.next
@@ -56,7 +59,7 @@ class LinkedList:
 
         return n
 
-    # 获取某个位置的结点
+    # 获取某个位置的结点2
     def get_node(self, position: int):
         if position >= self.length() or position < 0:
             raise IndexError('超出链表长度！')
@@ -66,6 +69,29 @@ class LinkedList:
                 t = t.next
 
             return t
+
+    def print(self):
+        t = self.head.next
+        res = 'head'
+        while t:
+            res += (' --> ' + str(t.data))
+            t = t.next
+
+        print(res)
+
+    def reverse(self):
+        link_re = LinkedList()
+        for j in range(1, self.length()):
+            link_re.head_insert(self.get_node(j).data)
+
+        return link_re
+
+    def init_list(self, data_list: List):
+        link_li = LinkedList()
+        for i in range(len(data_list)):
+            link_li.tail_insert(data_list[i])
+
+        return link_li
 
 
 if __name__ == '__main__':
@@ -79,3 +105,11 @@ if __name__ == '__main__':
     print(link1.get_node(link1.length()-1).data, link1.length())
     # print(link1.get_node(link1.length()).data)
     # print(link1.get_node(-1).data)
+
+    reverse_link1 = link1.reverse()
+    reverse_link1.print()
+    link1.print()
+
+    list_link = link1.init_list([2, 4, 5, 6, 7, 8])
+    list_link.print()
+
